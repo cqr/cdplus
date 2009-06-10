@@ -3,18 +3,21 @@
 function cdplus(){
 QUIET=0
 
-for PARAM in $*; do
+for PARAM in "$*"; do
   if [ "$PARAM" = "-q" ]; then
     QUIET=1
   else
+    # here's the hack! ugh, right? all this to change
+    # directories!
     pushd "$PARAM" > /dev/null 2> $HOME/.cdplus.err
     if [ $? -ne 0 ]; then
       QUIET=1
-      sed -r "s/^.*pushd:/$0:/" $HOME/.cdplus.err
+      sed -e "s/^.*pushd:/$0:/" $HOME/.cdplus.err
     fi
   fi
   if [ $QUIET -ne 1 ]; then
-    # put what you want here
+    # put what you want to happen here.
+    # I have included ls as an example, because I like it.
     ls
   fi
 done
