@@ -1,0 +1,22 @@
+#!/bin/bash
+
+function cdplus(){
+QUIET=0
+
+for PARAM in $*; do
+  if [ "$PARAM" = "-q" ]; then
+    QUIET=1
+  else
+    pushd "$PARAM" > /dev/null 2> $HOME/.cdplus.err
+    if [ $? -ne 0 ]; then
+      QUIET=1
+      sed -r "s/^.*pushd:/$0:/" $HOME/.cdplus.err
+    fi
+  fi
+  if [ $QUIET -ne 1 ]; then
+    # put what you want here
+    ls
+  fi
+done
+}
+
