@@ -23,3 +23,13 @@ for PARAM in "$*"; do
 done
 }
 
+if [[ $0 != *bash ]]; then
+  echo 
+  echo "You're doing it wrong!"
+  echo
+  echo "Try this:"
+  echo "$PWD# source $0"
+  echo "$PWD# alias cd=\"cdplus\""
+  echo "$PWD# cd ~"
+  echo
+fi 
