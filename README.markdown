@@ -1,5 +1,8 @@
+cd+
+===
+
 Intro
-=====
+-----
 
 I love BASH. I use it daily, for several hours at a time. It's
 fantastic. Part of what I love most about it is my ability to
@@ -18,7 +21,7 @@ cd with an ls, so that is the default configuration. I intend to flesh
 this out a little bit more, so that you can set up multiple aliases.
 
 Usage
-=====
+-----
 
 The easiest way to use this script right now is not terribly easy,
 so I will give you a quick rundown. Hopefully, I will be able to
@@ -77,4 +80,23 @@ edit that file, but why glorify a hack?
 If you need to go back to standard cd (i.e. no directory listing), just use
 the cdq alias we created or pass the -q (quiet) flag to cdplus (or cd).
 
-Hope you have enjoyed this brief foray into bash scripting, enjoy!
+Closing
+-------
+
+Hope you have enjoyed this brief foray into bash scripting. I'm trying to make
+this _very_ easy for beginners to fall in love with the command-line as I have,
+as it makes things far more efficient for systems-aministration tasks.
+
+I also want to make clear that this probably is not the best way to do this, but
+it's the only way that I was able to figure out,  and it has served me well for a
+little while. You can also make it much more efficient by choosing not to cater to
+all conditions, as I have, which is totally cool. Maybe this would suffice for you:
+
+    function cd(){
+      pushd "$1" > /dev/null
+      ls
+    }
+
+If so, you are encouraged to go that route. This may not be the only way to get
+this functionality. If you have a better way, please let me know, and publish it,
+cause I had to make this up, I wasn't able to find anything on the 'net.
