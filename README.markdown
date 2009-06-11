@@ -37,7 +37,7 @@ in your home directory. For the sake of argument, let's say it's in
     cd ~
     mkdir .cdplus
     cd .cdplus
-    wget http://github.com/chrisrhoden/cdplus/raw/master/cdplus
+    curl -O -# http://github.com/chrisrhoden/cdplus/raw/master/cdplus
 
 Next, you should crack open your .bashrc file, which is in your home
 directory. If you are using OS X, you can either make these changes in
