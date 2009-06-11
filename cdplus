@@ -3,7 +3,7 @@
 cdplus(){
   QUIET=0
   EXEC_AFTER="ls"
-  DIR="~"
+  DIR=$HOME
 
   until [ -z "$1" ]; do
   PARAM="$1"
