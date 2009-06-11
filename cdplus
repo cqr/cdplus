@@ -1,27 +1,43 @@
 #!/usr/bin/env bash
 
+# this is our function declaration
 cdplus(){
+  # let's start by setting up our defaults.
+  # each of these can be overridden with arguments,
+  # as you will see soon.
   QUIET=0
   EXEC_AFTER="ls"
   DIR=$HOME
 
+  # we are going to loop through each of the arguments
+  # that are passed to us. We do this with an until...shift
+  # loop because it allows us to jump forward within the
+  # loop (for the --exec parameter)
   until [ -z "$1" ]; do
+  # grab the value of the current parameter
   PARAM="$1"
     if [ "$PARAM" == "-q" ]||[ "$PARAM" == "--quiet" ]; then
       QUIET=1
     elif [ "$PARAM" == "-e" ]||[ "$PARAM" == "--exec" ]; then
       shift
       EXEC_AFTER="$1"
+    # if the parameter doesn't match the format of either
+    # of our defined flags, it must be the directory you want
+    # to change to!
     else
       DIR="$PARAM"
     fi
-    shift 1
+    shift
   done
 
   # here's the hack! ugh, right? all this to change
   # directories!
   pushd "$DIR" > /dev/null 2> $HOME/.cdplus.err
+  
+  # if the pushd command exited with an error, it's status
+  # code will be nonzero
   if [ $? -ne 0 ]; then
+    # let's ignore the EXEC_AFTER and just show the error
     QUIET=1
     sed -e "s/^.*pushd:/$0:/" $HOME/.cdplus.err
   fi
