@@ -36,7 +36,8 @@ in your home directory. For the sake of argument, let's say it's in
 
     cd ~
     mkdir .cdplus
-    mv cdplus .cdplus/
+    cd .cdplus
+    wget http://github.com/chrisrhoden/cdplus/raw/master/cdplus
 
 Next, you should crack open your .bashrc file, which is in your home
 directory. If you are using OS X, you can either make these changes in
@@ -73,9 +74,13 @@ once the directory is changed. So you should see something like this:
     cdplus*
     ~/.cdplus$ 
 
-You can change what happens after you cd by editing cdplus in this directory.
-This will likely be changed soon, so you can do everything without having to
-edit that file, but why glorify a hack?
+You can change what happens after you cd by editing your alias, with the -e
+or --exec parameter. For instance, if you wanted to get a more full directory
+listing, you could change your alias line to:
+
+    alias cd="cdplus -e 'ls -la'"
+
+This example seems a bit silly, but you get the idea.
 
 If you need to go back to standard cd (i.e. no directory listing), just use
 the cdq alias we created or pass the -q (quiet) flag to cdplus (or cd).
