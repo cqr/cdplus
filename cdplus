@@ -21,6 +21,9 @@ cdplus(){
   # here's the hack! ugh, right? all this to change
   # directories!
   pushd "$DIR" > /dev/null 2> $HOME/.cdplus.err
+  # as far as I can tell, this is only necessary on OSX, and only
+  # to keep your dstack clean...
+  popd > /dev/null 2>&1
   if [ $? -ne 0 ]; then
     QUIET=1
     sed -e "s/^.*pushd:/$0:/" $HOME/.cdplus.err
